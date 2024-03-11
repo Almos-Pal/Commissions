@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import CommissionsItem from "./CommissionsItem";
+import CommissionItem from "./CommissionItem";
 import { Commission } from "../constans/commission";
 
 function CommissionsTable() {
@@ -17,13 +17,27 @@ function CommissionsTable() {
       }
     };
     fetchData();
-  }, []);
+  }, [commissions]);
 
   return (
-    <div>
-      {commissions.map((commission) => (
-        <CommissionsItem key={commission.id} commission={commission} />
-      ))}
+    <div className="overflow-x-auto">
+      <table className="table-auto w-full border-collapse border border-gray-300">
+        <thead>
+          <tr>
+            <th className="px-4 py-2 bg-gray-200 border border-gray-300">
+              Description
+            </th>
+            <th className="px-4 py-2 bg-gray-200 border border-gray-300">
+              Price
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {commissions.map((commission) => (
+            <CommissionItem key={commission.id} commission={commission} />
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }
